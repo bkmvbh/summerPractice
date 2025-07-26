@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		216DE6B633CAB4614DED7C8E /* Pods_summerPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F010A0AC1619FE1B1089B0 /* Pods_summerPractice.framework */; };
+		3D03F76FD4B9B50C38D038DC /* Pods_summerPractice_summerPracticeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDC604F5035ED83CF43E55B3 /* Pods_summerPractice_summerPracticeUITests.framework */; };
+		710BA0457F6BE199C6E7CCC7 /* Pods_summerPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF868C1B065FBEECF7FB406C /* Pods_summerPracticeTests.framework */; };
+		9F10A1FD2E345512005122FB /* hand_landmarker.task in Resources */ = {isa = PBXBuildFile; fileRef = 9F10A1FC2E345512005122FB /* hand_landmarker.task */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		9F10A17D2E328FD9005122FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +31,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19F010A0AC1619FE1B1089B0 /* Pods_summerPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_summerPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70DE82F8216982AA89164809 /* Pods-summerPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-summerPracticeTests.release.xcconfig"; path = "Target Support Files/Pods-summerPracticeTests/Pods-summerPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
+		7F0B9C4189678D119AF1DB1B /* Pods-summerPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-summerPractice.debug.xcconfig"; path = "Target Support Files/Pods-summerPractice/Pods-summerPractice.debug.xcconfig"; sourceTree = "<group>"; };
 		9F10A1662E328FD6005122FB /* summerPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = summerPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F10A17C2E328FD9005122FB /* summerPracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = summerPracticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F10A1862E328FD9005122FB /* summerPracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = summerPracticeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F10A1FC2E345512005122FB /* hand_landmarker.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = hand_landmarker.task; sourceTree = "<group>"; };
+		B076228C22A2A617A23DDB67 /* Pods-summerPracticeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-summerPracticeTests.debug.xcconfig"; path = "Target Support Files/Pods-summerPracticeTests/Pods-summerPracticeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BDC604F5035ED83CF43E55B3 /* Pods_summerPractice_summerPracticeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_summerPractice_summerPracticeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2161074A717A8DE2DCABF34 /* Pods-summerPractice-summerPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-summerPractice-summerPracticeUITests.release.xcconfig"; path = "Target Support Files/Pods-summerPractice-summerPracticeUITests/Pods-summerPractice-summerPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DF868C1B065FBEECF7FB406C /* Pods_summerPracticeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_summerPracticeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E56672FB18FBEA2731AA8661 /* Pods-summerPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-summerPractice.release.xcconfig"; path = "Target Support Files/Pods-summerPractice/Pods-summerPractice.release.xcconfig"; sourceTree = "<group>"; };
+		EFCE94B35376BE86D0231254 /* Pods-summerPractice-summerPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-summerPractice-summerPracticeUITests.debug.xcconfig"; path = "Target Support Files/Pods-summerPractice-summerPracticeUITests/Pods-summerPractice-summerPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216DE6B633CAB4614DED7C8E /* Pods_summerPractice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710BA0457F6BE199C6E7CCC7 /* Pods_summerPracticeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D03F76FD4B9B50C38D038DC /* Pods_summerPractice_summerPracticeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,10 +108,13 @@
 		9F10A15D2E328FD6005122FB = {
 			isa = PBXGroup;
 			children = (
+				9F10A1FB2E3454D5005122FB /* Models */,
 				9F10A1682E328FD6005122FB /* summerPractice */,
 				9F10A17F2E328FD9005122FB /* summerPracticeTests */,
 				9F10A1892E328FD9005122FB /* summerPracticeUITests */,
 				9F10A1672E328FD6005122FB /* Products */,
+				E896C71163B208C931402FEB /* Pods */,
+				ECF80B311C5D699A671E5C48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +128,37 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9F10A1FB2E3454D5005122FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F10A1FC2E345512005122FB /* hand_landmarker.task */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E896C71163B208C931402FEB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F0B9C4189678D119AF1DB1B /* Pods-summerPractice.debug.xcconfig */,
+				E56672FB18FBEA2731AA8661 /* Pods-summerPractice.release.xcconfig */,
+				EFCE94B35376BE86D0231254 /* Pods-summerPractice-summerPracticeUITests.debug.xcconfig */,
+				C2161074A717A8DE2DCABF34 /* Pods-summerPractice-summerPracticeUITests.release.xcconfig */,
+				B076228C22A2A617A23DDB67 /* Pods-summerPracticeTests.debug.xcconfig */,
+				70DE82F8216982AA89164809 /* Pods-summerPracticeTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		ECF80B311C5D699A671E5C48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				19F010A0AC1619FE1B1089B0 /* Pods_summerPractice.framework */,
+				BDC604F5035ED83CF43E55B3 /* Pods_summerPractice_summerPracticeUITests.framework */,
+				DF868C1B065FBEECF7FB406C /* Pods_summerPracticeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,6 +166,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F10A18F2E328FD9005122FB /* Build configuration list for PBXNativeTarget "summerPractice" */;
 			buildPhases = (
+				2FD857A5608B29008457D619 /* [CP] Check Pods Manifest.lock */,
 				9F10A1622E328FD6005122FB /* Sources */,
 				9F10A1632E328FD6005122FB /* Frameworks */,
 				9F10A1642E328FD6005122FB /* Resources */,
@@ -124,8 +179,6 @@
 				9F10A1682E328FD6005122FB /* summerPractice */,
 			);
 			name = summerPractice;
-			packageProductDependencies = (
-			);
 			productName = summerPractice;
 			productReference = 9F10A1662E328FD6005122FB /* summerPractice.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +187,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F10A1942E328FD9005122FB /* Build configuration list for PBXNativeTarget "summerPracticeTests" */;
 			buildPhases = (
+				A9C6F36BBA03D4A029432641 /* [CP] Check Pods Manifest.lock */,
 				9F10A1782E328FD9005122FB /* Sources */,
 				9F10A1792E328FD9005122FB /* Frameworks */,
 				9F10A17A2E328FD9005122FB /* Resources */,
@@ -147,8 +201,6 @@
 				9F10A17F2E328FD9005122FB /* summerPracticeTests */,
 			);
 			name = summerPracticeTests;
-			packageProductDependencies = (
-			);
 			productName = summerPracticeTests;
 			productReference = 9F10A17C2E328FD9005122FB /* summerPracticeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,6 +209,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F10A1972E328FD9005122FB /* Build configuration list for PBXNativeTarget "summerPracticeUITests" */;
 			buildPhases = (
+				72B5EE1E846AC24353AC9AC9 /* [CP] Check Pods Manifest.lock */,
 				9F10A1822E328FD9005122FB /* Sources */,
 				9F10A1832E328FD9005122FB /* Frameworks */,
 				9F10A1842E328FD9005122FB /* Resources */,
@@ -170,8 +223,6 @@
 				9F10A1892E328FD9005122FB /* summerPracticeUITests */,
 			);
 			name = summerPracticeUITests;
-			packageProductDependencies = (
-			);
 			productName = summerPracticeUITests;
 			productReference = 9F10A1862E328FD9005122FB /* summerPracticeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -225,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F10A1FD2E345512005122FB /* hand_landmarker.task in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +295,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2FD857A5608B29008457D619 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-summerPractice-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72B5EE1E846AC24353AC9AC9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-summerPractice-summerPracticeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9C6F36BBA03D4A029432641 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-summerPracticeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F10A1622E328FD6005122FB /* Sources */ = {
@@ -284,6 +405,7 @@
 /* Begin XCBuildConfiguration section */
 		9F10A1902E328FD9005122FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F0B9C4189678D119AF1DB1B /* Pods-summerPractice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -294,7 +416,6 @@
 				INFOPLIST_FILE = summerPractice/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -312,6 +433,7 @@
 		};
 		9F10A1912E328FD9005122FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E56672FB18FBEA2731AA8661 /* Pods-summerPractice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,7 +444,6 @@
 				INFOPLIST_FILE = summerPractice/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -461,6 +582,7 @@
 		};
 		9F10A1952E328FD9005122FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B076228C22A2A617A23DDB67 /* Pods-summerPracticeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -480,6 +602,7 @@
 		};
 		9F10A1962E328FD9005122FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70DE82F8216982AA89164809 /* Pods-summerPracticeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -499,6 +622,7 @@
 		};
 		9F10A1982E328FD9005122FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFCE94B35376BE86D0231254 /* Pods-summerPractice-summerPracticeUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -516,6 +640,7 @@
 		};
 		9F10A1992E328FD9005122FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2161074A717A8DE2DCABF34 /* Pods-summerPractice-summerPracticeUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
