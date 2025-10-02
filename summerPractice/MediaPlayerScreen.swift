@@ -12,18 +12,7 @@ struct MediaPlayerScreen: View {
                 Spacer()
 
                 VStack(spacing: 15) {
-                    Text("Ваш жест: \(cameraModel.gesture)")
-                        .font(.largeTitle)
-                        .padding()
-                        .background(Color.black.opacity(0.5))
-                        .cornerRadius(10)
-                        .foregroundColor(.white)
-
-                    // Показываем действие последнего жеста
-                    Text("Действие: \(cameraModel.lastAction?.rawValue ?? "-")")
-                        .font(.title2)
-                        .foregroundColor(.yellow)
-
+                    
                     // Текущий трек
                     Text("Текущий трек: \(playerModel.tracks[playerModel.currentTrack])")
                         .font(.title)

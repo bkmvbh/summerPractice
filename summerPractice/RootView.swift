@@ -9,7 +9,7 @@ enum Screen {
 struct RootView: View {
     @State private var currentScreen: Screen = .gallery
     @ObservedObject var cameraModel: CameraModel
-    @StateObject private var playerModel = MediaPlayerModel() // Модель медиаплеера
+    @StateObject private var playerModel = MediaPlayerModel()
 
     init(cameraModel: CameraModel) {
         _cameraModel = ObservedObject(wrappedValue: cameraModel)
@@ -17,7 +17,7 @@ struct RootView: View {
 
     var body: some View {
         ZStack {
-            // Основные экраны
+            
             switch currentScreen {
             case .gallery:
                 GalleryScreen(cameraModel: cameraModel)
@@ -25,7 +25,7 @@ struct RootView: View {
                 MediaPlayerScreen(cameraModel: cameraModel, playerModel: playerModel)
             }
 
-            // Камера сверху
+            
             CameraViewWrapper(cameraModel: cameraModel)
                 .ignoresSafeArea()
         }
@@ -37,7 +37,7 @@ struct RootView: View {
                 toggleScreen()
             }
 
-            // Управление медиаплеером только на экране MediaPlayer
+            
             guard currentScreen == .mediaPlayer else { return }
 
             switch action {
@@ -55,7 +55,7 @@ struct RootView: View {
     }
 }
 
-// Обёртка для CameraView
+
 struct CameraViewWrapper: View {
     @ObservedObject var cameraModel: CameraModel
 

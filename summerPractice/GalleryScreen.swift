@@ -23,9 +23,6 @@ struct GalleryScreen: View {
                     Text("Жест: \(cameraModel.gesture)")
                         .font(.largeTitle)
                         .foregroundColor(.white)
-                    Text("Действие: \(cameraModel.lastAction?.rawValue ?? "-")")
-                        .font(.title2)
-                        .foregroundColor(.yellow)
                 }
                 .padding(.bottom, 50)
             }

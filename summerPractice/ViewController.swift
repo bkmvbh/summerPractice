@@ -17,10 +17,10 @@ class ViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         
-        button.setTitle("Открыть камеру", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.setTitle("Начать", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 28, weight: .semibold)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
@@ -37,10 +37,10 @@ class ViewController: UIViewController {
     }
     
     @objc private func openRootView() {
-        let cameraModel = CameraModel() // создаём один объект модели
+        let cameraModel = CameraModel()
         let rootView = RootView(cameraModel: cameraModel)
         let hostingController = UIHostingController(rootView: rootView)
-        hostingController.modalPresentationStyle = .fullScreen // правильный enum
+        hostingController.modalPresentationStyle = .fullScreen
         present(hostingController, animated: true)
     }
 }

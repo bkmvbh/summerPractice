@@ -236,7 +236,6 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
     func processHandLandmarks(_ result: HandLandmarkerResult) {
         DispatchQueue.main.async {
             if result.landmarks.isEmpty {
-                self.gesture = "✋ Рука не найдена"
                 return
             }
             
