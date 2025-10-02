@@ -20,7 +20,8 @@ enum GestureAction: String {
 
 // MARK: - Основное окно камеры
 struct CameraView: View {
-    @StateObject private var model = CameraModel()
+    @ObservedObject var model: CameraModel
+    var showCloseButton: Bool = true
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -29,15 +30,18 @@ struct CameraView: View {
                 .ignoresSafeArea()
             
             VStack {
-                HStack {
-                    Spacer()
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .padding()
+                if showCloseButton {
+                    HStack {
+                        Spacer()
+                        Button(action: { dismiss() }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                                .padding()
+                        }
                     }
                 }
+                
                 Spacer()
                 
                 VStack(spacing: 10) {
@@ -102,7 +106,6 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
     private var handLandmarker: HandLandmarker?
     private var landmarkerDelegate: HandLandmarkerDelegate?
     
-    // История для анти-джиттера
     private var gestureHistory: [String] = []
     private var gestureStartTime: Date?
     private let minHoldDuration: TimeInterval = 0.3
@@ -129,9 +132,7 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
         session.beginConfiguration()
         defer { session.commitConfiguration() }
         
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera,
-                                                   for: .video,
-                                                   position: .front) else {
+        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
             throw CameraError.deviceUnavailable
         }
         
@@ -206,16 +207,14 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
     }
     
     // MARK: - Обработка кадров
-    func captureOutput(_ output: AVCaptureOutput,
-                       didOutput sampleBuffer: CMSampleBuffer,
-                       from connection: AVCaptureConnection) {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         mediaPipeQueue.async {
             self.processFrame(sampleBuffer: sampleBuffer)
         }
     }
     
     private func processFrame(sampleBuffer: CMSampleBuffer) {
-        guard self.handLandmarker != nil else {
+        guard let handLandmarker = handLandmarker else {
             DispatchQueue.main.async { self.gesture = "MediaPipe не готов" }
             return
         }
@@ -227,13 +226,13 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
         do {
             let image = try MPImage(pixelBuffer: pixelBuffer, orientation: .up)
             let timestampMs = Int(Date().timeIntervalSince1970 * 1000)
-            try self.handLandmarker?.detectAsync(image: image, timestampInMilliseconds: timestampMs)
+            try handLandmarker.detectAsync(image: image, timestampInMilliseconds: timestampMs)
         } catch {
             self.handleError(error)
         }
     }
     
-    // MARK: - Результаты
+    // MARK: - Обработка результатов
     func processHandLandmarks(_ result: HandLandmarkerResult) {
         DispatchQueue.main.async {
             if result.landmarks.isEmpty {
@@ -252,15 +251,12 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
         }
     }
     
-    // MARK: - История и фильтрация
     private func handleGesture(_ currentGesture: String) {
         let now = Date()
-        
         if gestureHistory.last != currentGesture {
             gestureHistory.removeAll()
             gestureStartTime = now
         }
-        
         gestureHistory.append(currentGesture)
         
         if let start = gestureStartTime, now.timeIntervalSince(start) >= minHoldDuration {
@@ -272,27 +268,14 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
         }
     }
     
-    // MARK: - Распознавание жестов
     private func detectGestures(from landmarks: [NormalizedLandmark]) -> String {
-        let thumbTip = landmarks[4]
-        let indexTip = landmarks[8]
-        let middleTip = landmarks[12]
-        let ringTip = landmarks[16]
-        let pinkyTip = landmarks[20]
+        let thumbTip = landmarks[4], indexTip = landmarks[8]
+        let middleTip = landmarks[12], ringTip = landmarks[16], pinkyTip = landmarks[20]
+        let indexMCP = landmarks[5], middleMCP = landmarks[9], ringMCP = landmarks[13], pinkyMCP = landmarks[17]
+        let thumbIP = landmarks[3], wrist = landmarks[0]
         
-        let indexMCP = landmarks[5]
-        let middleMCP = landmarks[9]
-        let ringMCP = landmarks[13]
-        let pinkyMCP = landmarks[17]
-        let thumbIP = landmarks[3]
-        let wrist = landmarks[0]
-        
-        func isFingerOpen(tip: NormalizedLandmark, mcp: NormalizedLandmark) -> Bool {
-            return tip.y < mcp.y
-        }
-        func isFingerClosed(tip: NormalizedLandmark, mcp: NormalizedLandmark) -> Bool {
-            return tip.y > mcp.y
-        }
+        func isFingerOpen(tip: NormalizedLandmark, mcp: NormalizedLandmark) -> Bool { tip.y < mcp.y }
+        func isFingerClosed(tip: NormalizedLandmark, mcp: NormalizedLandmark) -> Bool { tip.y > mcp.y }
         
         // 👍 Лайк
         let thumbUp = thumbTip.y < thumbIP.y && thumbTip.x < wrist.x + 0.2
@@ -323,19 +306,16 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
         let pinkyClosed = isFingerClosed(tip: pinkyTip, mcp: pinkyMCP)
         if indexOpen && middleOpen && ringClosed && pinkyClosed { return "✌️" }
         
+        // 👆 Указательный
         let indexUp = indexTip.y < landmarks[6].y
         let middleFolded = middleTip.y > landmarks[10].y
         let ringFolded = ringTip.y > landmarks[14].y
         let pinkyFolded = pinkyTip.y > landmarks[18].y
-
-        if indexUp && middleFolded && ringFolded && pinkyFolded {
-            return "👆"
-        }
-    
+        if indexUp && middleFolded && ringFolded && pinkyFolded { return "👆" }
+        
         return "🤷"
     }
     
-    // MARK: - Действия
     private func performAction(for gesture: String) {
         switch gesture {
         case "👊": lastAction = .playPause
@@ -347,7 +327,6 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
         print("🎬 Действие: \(lastAction!.rawValue)")
     }
     
-    // MARK: - Ошибки
     private func handleError(_ error: Error) {
         DispatchQueue.main.async {
             self.lastError = error
@@ -357,7 +336,6 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
     
     private class HandLandmarkerDelegate: NSObject, HandLandmarkerLiveStreamDelegate {
         weak var model: CameraModel?
-        
         init(model: CameraModel) { self.model = model }
         
         func handLandmarker(_ handLandmarker: HandLandmarker,

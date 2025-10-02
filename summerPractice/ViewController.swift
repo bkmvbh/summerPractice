@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import MediaPipeTasksVision
 import SwiftUI
 
 class ViewController: UIViewController {
@@ -25,7 +24,7 @@ class ViewController: UIViewController {
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
+        button.addTarget(self, action: #selector(openRootView), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
         
@@ -37,10 +36,11 @@ class ViewController: UIViewController {
         ])
     }
     
-    @objc private func openCamera() {
-        let cameraView = CameraView()
-        let hostingController = UIHostingController(rootView: cameraView)
-        hostingController.modalPresentationStyle = .fullScreen
+    @objc private func openRootView() {
+        let cameraModel = CameraModel() // создаём один объект модели
+        let rootView = RootView(cameraModel: cameraModel)
+        let hostingController = UIHostingController(rootView: rootView)
+        hostingController.modalPresentationStyle = .fullScreen // правильный enum
         present(hostingController, animated: true)
     }
 }

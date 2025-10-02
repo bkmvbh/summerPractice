@@ -1,21 +1,15 @@
-//
-//  MediaPlayerScreen.swift
-//  summerPractice
-//
-//  Created by Ильмир Шарафутдинов on 02.10.2025.
-//
 import SwiftUI
 
 struct MediaPlayerScreen: View {
-    @StateObject private var cameraModel = CameraModel()
+    @ObservedObject var cameraModel: CameraModel
 
     var body: some View {
         ZStack {
-            CameraPreview(session: cameraModel.session)
-                .ignoresSafeArea()
+            Color.black.ignoresSafeArea()
 
             VStack {
                 Spacer()
+
                 VStack(spacing: 15) {
                     Text("Ваш жест: \(cameraModel.gesture)")
                         .font(.largeTitle)
@@ -29,18 +23,10 @@ struct MediaPlayerScreen: View {
                         .foregroundColor(.yellow)
 
                     HStack(spacing: 20) {
-                        VStack {
-                            Text("👊\nПлей/Пауза").multilineTextAlignment(.center)
-                        }
-                        VStack {
-                            Text("✌️\nСледующий трек").multilineTextAlignment(.center)
-                        }
-                        VStack {
-                            Text("👍\nЛайк").multilineTextAlignment(.center)
-                        }
-                        VStack {
-                            Text("🖐️\nСтоп").multilineTextAlignment(.center)
-                        }
+                        VStack { Text("👊\nПлей/Пауза").multilineTextAlignment(.center) }
+                        VStack { Text("✌️\nСледующий трек").multilineTextAlignment(.center) }
+                        VStack { Text("👍\nЛайк").multilineTextAlignment(.center) }
+                        VStack { Text("🖐️\nСтоп").multilineTextAlignment(.center) }
                     }
                     .padding()
                     .background(Color.white.opacity(0.3))
@@ -49,8 +35,5 @@ struct MediaPlayerScreen: View {
                 .padding(.bottom, 50)
             }
         }
-        .onAppear { cameraModel.startSession() }
-        .onDisappear { cameraModel.stopSession() }
     }
 }
-

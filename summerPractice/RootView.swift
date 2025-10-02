@@ -1,34 +1,47 @@
-//
-//  RootView.swift
-//  summerPractice
-//
-//  Created by Ильмир Шарафутдинов on 02.10.2025.
-//
-
 import SwiftUI
 
+enum Screen {
+    case gallery
+    case mediaPlayer
+}
+
 struct RootView: View {
+    @State private var currentScreen: Screen = .gallery
+    @ObservedObject var cameraModel: CameraModel
+
+    init(cameraModel: CameraModel) {
+        _cameraModel = ObservedObject(wrappedValue: cameraModel)
+    }
+
     var body: some View {
-        NavigationView {
-            VStack(spacing: 30) {
-                Text("Демонстрация управления жестами")
-                    .font(.title2)
-                    .multilineTextAlignment(.center)
-                    .padding()
-
-                NavigationLink("Медиа-плеер 🎵", destination: MediaPlayerScreen())
-                    .buttonStyle(.borderedProminent)
-
-                NavigationLink("Галерея картинок 🖼", destination: GalleryScreen())
-                    .buttonStyle(.borderedProminent)
+        ZStack {
+            switch currentScreen {
+            case .gallery:
+                GalleryScreen(cameraModel: cameraModel)
+            case .mediaPlayer:
+                MediaPlayerScreen(cameraModel: cameraModel)
             }
-            .navigationTitle("Главный экран")
+
+            CameraViewWrapper(cameraModel: cameraModel)
+                .ignoresSafeArea()
         }
+        .onReceive(cameraModel.$lastAction) { action in
+            guard let action = action else { return }
+            if action == .nextScreen {
+                toggleScreen()
+            }
+        }
+    }
+
+    private func toggleScreen() {
+        currentScreen = currentScreen == .gallery ? .mediaPlayer : .gallery
     }
 }
 
-struct RootView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootView()
+struct CameraViewWrapper: View {
+    @ObservedObject var cameraModel: CameraModel
+
+    var body: some View {
+        CameraView(model: cameraModel, showCloseButton: false)
     }
 }
