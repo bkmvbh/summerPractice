@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MediaPlayerScreen: View {
     @ObservedObject var cameraModel: CameraModel
+    @ObservedObject var playerModel: MediaPlayerModel
 
     var body: some View {
         ZStack {
@@ -18,15 +19,30 @@ struct MediaPlayerScreen: View {
                         .cornerRadius(10)
                         .foregroundColor(.white)
 
+                    // Показываем действие последнего жеста
                     Text("Действие: \(cameraModel.lastAction?.rawValue ?? "-")")
                         .font(.title2)
                         .foregroundColor(.yellow)
 
+                    // Текущий трек
+                    Text("Текущий трек: \(playerModel.tracks[playerModel.currentTrack])")
+                        .font(.title)
+                        .foregroundColor(.white)
+
+                    // Статус Play/Pause
+                    Text(playerModel.isPlaying ? "▶️ Воспроизведение" : "⏸️ Пауза")
+                        .font(.title2)
+                        .foregroundColor(.green)
+                        .padding()
+                        .background(Color.white.opacity(0.2))
+                        .cornerRadius(10)
+
+                    // Подсказка жестов
                     HStack(spacing: 20) {
-                        VStack { Text("👊\nПлей/Пауза").multilineTextAlignment(.center) }
-                        VStack { Text("✌️\nСледующий трек").multilineTextAlignment(.center) }
-                        VStack { Text("👍\nЛайк").multilineTextAlignment(.center) }
+                        VStack { Text("👊\nPlay/Pause").multilineTextAlignment(.center) }
+                        VStack { Text("👆\nСледующий трек").multilineTextAlignment(.center) }
                         VStack { Text("🖐️\nСтоп").multilineTextAlignment(.center) }
+                        VStack { Text("✌️\nСменить экран").multilineTextAlignment(.center) }
                     }
                     .padding()
                     .background(Color.white.opacity(0.3))
@@ -34,6 +50,9 @@ struct MediaPlayerScreen: View {
                 }
                 .padding(.bottom, 50)
             }
+        }
+        .onReceive(playerModel.$isPlaying) { _ in
+            
         }
     }
 }

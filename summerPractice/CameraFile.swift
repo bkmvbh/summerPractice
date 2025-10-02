@@ -11,14 +11,14 @@ import MediaPipeTasksVision
 
 // MARK: - Возможные действия
 enum GestureAction: String {
-    case playPause = "▶️⏸ Пауза/Плей"
-    case nextScreen = "➡️ Следующий экран"
-    case like = "❤️ Лайк"
-    case select = "✅ Выбор элемента"
-    case stop = "⏹ Стоп"
+    case playPause = "👊"      // 👊 — предыдущая фото
+    case nextScreen = "➡️ Следующий экран"  // ✌️ — переключение экрана
+    case like = "❤️ лайк"                  // 👍 — лайк текущей фото
+    case select = "👆"       // 👆 — следующая фото
+    case stop = "🖐️ " // 🖐️ — сброс на первую фото
 }
 
-// MARK: - Основное окно камеры
+// MARK: - Камера с превью
 struct CameraView: View {
     @ObservedObject var model: CameraModel
     var showCloseButton: Bool = true
@@ -46,7 +46,7 @@ struct CameraView: View {
                 
                 VStack(spacing: 10) {
                     Text(model.gesture)
-                        .font(.system(size: 60, weight: .bold))
+                        .font(.system(size: 20, weight: .bold))
                         .padding()
                         .background(Color.black.opacity(0.5))
                         .cornerRadius(10)
@@ -90,15 +90,15 @@ struct CameraPreview: UIViewRepresentable {
     }
 }
 
-// MARK: - Модель камеры
+// MARK: - Модель камеры и жестов
 final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     private let sessionQueue = DispatchQueue(label: "camera.session.queue")
     private let mediaPipeQueue = DispatchQueue(label: "mediapipe.processing.queue")
     
     @Published var gesture: String = ""
-    @Published var lastError: Error?
     @Published var lastAction: GestureAction?
+    @Published var lastError: Error?
     
     let session = AVCaptureSession()
     private let videoOutput = AVCaptureVideoDataOutput()
@@ -322,6 +322,7 @@ final class CameraModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSam
         case "✌️": lastAction = .nextScreen
         case "👍": lastAction = .like
         case "🖐️": lastAction = .stop
+        case "👆": lastAction = .select
         default: return
         }
         print("🎬 Действие: \(lastAction!.rawValue)")

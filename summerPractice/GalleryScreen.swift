@@ -3,67 +3,42 @@ import SwiftUI
 struct GalleryScreen: View {
     @ObservedObject var cameraModel: CameraModel
     @State private var currentIndex = 0
-    private let images = ["photo1", "photo2", "photo3"] // Добавь свои фото в Assets
+    private let images = ["photo1","photo2","photo3","photo4","photo5","photo6","photo7","photo8","photo9","photo10"]
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea() // Черный фон под камерой
+            Color.black.ignoresSafeArea()
+            if images.indices.contains(currentIndex) {
+                Image(images[currentIndex])
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 300, maxHeight: 400)
+                    .cornerRadius(12)
+                    .shadow(radius: 5)
+            }
 
             VStack {
                 Spacer()
-
-                if images.indices.contains(currentIndex) {
-                    Image(images[currentIndex])
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 300, maxHeight: 400)
-                        .cornerRadius(12)
-                        .shadow(radius: 5)
-                        .padding()
-                }
-
-                VStack(spacing: 15) {
-                    Text("Ваш жест: \(cameraModel.gesture)")
+                VStack(spacing: 10) {
+                    Text("Жест: \(cameraModel.gesture)")
                         .font(.largeTitle)
-                        .padding()
-                        .background(Color.black.opacity(0.5))
-                        .cornerRadius(10)
                         .foregroundColor(.white)
-
                     Text("Действие: \(cameraModel.lastAction?.rawValue ?? "-")")
                         .font(.title2)
                         .foregroundColor(.yellow)
-
-                    HStack(spacing: 15) {
-                        VStack { Text("✌️\nСледующая").multilineTextAlignment(.center) }
-                        VStack { Text("👊\nПредыдущая").multilineTextAlignment(.center) }
-                        VStack { Text("👆\nВыбрать").multilineTextAlignment(.center) }
-                        VStack { Text("👍\nПерейти в Музыку").multilineTextAlignment(.center) }
-                    }
-                    .padding()
-                    .background(Color.white.opacity(0.3))
-                    .cornerRadius(12)
                 }
                 .padding(.bottom, 50)
             }
         }
-        .onChange(of: cameraModel.lastAction) { action in
-            handleAction(action)
-        }
-    }
-
-    private func handleAction(_ action: GestureAction?) {
-        switch action {
-        case .like, .nextScreen: // Следующая фотография
-            currentIndex = min(currentIndex + 1, images.count - 1)
-        case .playPause: // Предыдущая фотография
-            currentIndex = max(currentIndex - 1, 0)
-        case .select: // Выбрать текущую
-            print("Выбрана картинка \(currentIndex)")
-        case .stop: // Сброс
-            currentIndex = 0
-        case .none:
-            break
+        .onReceive(cameraModel.$lastAction) { action in
+            guard let action = action else { return }
+            switch action {
+            case .select: currentIndex = min(currentIndex + 1, images.count - 1)   // 👆 следующий фото
+            case .playPause: currentIndex = max(currentIndex - 1, 0)               // 👊 предыдущий фото
+            case .stop: currentIndex = 0                                           // 🖐️ сброс
+            case .like: print("👍 Лайк фото \(currentIndex + 1)")                  // 👍 лайк
+            default: break
+            }
         }
     }
 }
